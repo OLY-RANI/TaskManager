@@ -9,5 +9,4 @@ void main(){
   runApp(TaskManagerApp());
 }
 
-//TODO : InProgress & Canceled Page er API Call Korte hbe
 //TODO : Edit Api Call

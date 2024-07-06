@@ -10,7 +10,8 @@ import '../../data/utilities/urls.dart';
 class TaskItem extends StatefulWidget {
   const TaskItem({
     super.key,
-    required this.taskModel, required this.onUpdateTask,
+    required this.taskModel,
+    required this.onUpdateTask,
   });
 
   final TaskModel taskModel;
@@ -24,20 +25,13 @@ class _TaskItemState extends State<TaskItem> {
   bool _deleteInProgress = false;
   bool _editInProgress = false;
   String dropdownValue = '';
-  List<String> statusList = [
-    'New',
-    'Progress',
-    'Completed',
-    'Cancelled'
-  ];
+  List<String> statusList = ['New', 'Progress', 'Completed', 'Cancelled'];
 
   @override
   void initState() {
     super.initState();
     dropdownValue = widget.taskModel.status!;
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -71,14 +65,16 @@ class _TaskItemState extends State<TaskItem> {
                       child: IconButton(
                           onPressed: () {
                             _deleteTask();
-                          }, icon: const Icon(Icons.delete)),
+                          },
+                          icon: const Icon(Icons.delete)),
                     ),
                     Visibility(
                       visible: _editInProgress == false,
-                      replacement:  const CenterProgressIndicator(),
+                      replacement: const CenterProgressIndicator(),
                       child: PopupMenuButton<String>(
                         icon: const Icon(Icons.edit),
                         onSelected: (String selectedValue) {
+
                           dropdownValue = selectedValue;
                           if (mounted) {
                             setState(() {});
@@ -129,6 +125,4 @@ class _TaskItemState extends State<TaskItem> {
       setState(() {});
     }
   }
-
-
 }
