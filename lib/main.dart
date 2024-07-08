@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'app.dart';
 
 void main(){
-  runApp(TaskManagerApp());
+  runApp(const TaskManagerApp());
 }
 
-//TODO : Edit Api Call

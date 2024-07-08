@@ -48,12 +48,14 @@ class _CanceledTaskScreenState extends State<CanceledTaskScreen> {
     );
   }
 
+
+
   Future<void> _getCanceledTasks() async {
     _getCanceledTasksInProgress = true;
     if (mounted) {
       setState(() {});
     }
-    NetworkResponse response = await NetworkCaller.getRequest(Urls.inProgress);
+    NetworkResponse response = await NetworkCaller.getRequest(Urls.canceled);
     if (response.isSuccess) {
       TaskListWrapperModel taskListWrapperModel =
       TaskListWrapperModel.fromJson(response.responseData);
@@ -61,7 +63,7 @@ class _CanceledTaskScreenState extends State<CanceledTaskScreen> {
     } else {
       if (mounted) {
         showSnackBarMessage(
-            context, response.errorMassege ?? 'Get In Progress Task failed! Try again');
+            context, response.errorMassege ?? 'Get Canceled Task failed! Try again');
       }
     }
     _getCanceledTasksInProgress = false;

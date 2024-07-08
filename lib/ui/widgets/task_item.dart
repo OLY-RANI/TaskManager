@@ -25,7 +25,7 @@ class _TaskItemState extends State<TaskItem> {
   bool _deleteInProgress = false;
   bool _editInProgress = false;
   String dropdownValue = '';
-  List<String> statusList = ['New', 'Progress', 'Completed', 'Cancelled'];
+  List<String> statusList = ['New', 'Progress', 'Completed', 'Canceled'];
 
   @override
   void initState() {
@@ -77,7 +77,9 @@ class _TaskItemState extends State<TaskItem> {
 
                           dropdownValue = selectedValue;
                           if (mounted) {
-                            setState(() {});
+                            setState(() {
+                              _editTask(dropdownValue);
+                            });
                           }
                         },
                         itemBuilder: (BuildContext context) {
@@ -104,6 +106,30 @@ class _TaskItemState extends State<TaskItem> {
       ),
     );
   }
+
+  Future<void> _editTask(String endPoint) async {
+    _editInProgress = true;
+    if (mounted) {
+      setState(() {});
+    }
+    //network call
+    NetworkResponse response =
+    await NetworkCaller.getRequest("${Urls.updateTask}/${widget.taskModel.sId}/$endPoint");
+
+    if (response.isSuccess) {
+      widget.onUpdateTask();
+    } else {
+      if (mounted) {
+        showSnackBarMessage(
+            context, response.errorMassege ?? 'Task Update failed! Try again');
+      }
+    }
+    _deleteInProgress = false;
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
 
   Future<void> _deleteTask() async {
     _deleteInProgress = true;
