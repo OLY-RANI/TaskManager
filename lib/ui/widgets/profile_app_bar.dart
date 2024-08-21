@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:task_manager_oly/ui/controllers/auth_controller.dart';
 import 'package:task_manager_oly/ui/screens/auth/sign_in_screen.dart';
 import 'package:task_manager_oly/ui/screens/update_profile_screen.dart';
 
 import '../utility/app_colors.dart';
-import 'network_cached_image.dart';
 
 AppBar profileAppBar(context, [bool fromUpdateProfile = false]) {
   return AppBar(
@@ -16,12 +16,13 @@ AppBar profileAppBar(context, [bool fromUpdateProfile = false]) {
         if (fromUpdateProfile) {
           return;
         }
-        Navigator.push(
+        Get.to(const UpdateProfileScreen());
+       /* Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => const UpdateProfileScreen(),
           ),
-        );
+        );*/
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -40,12 +41,13 @@ AppBar profileAppBar(context, [bool fromUpdateProfile = false]) {
         if (fromUpdateProfile) {
           return;
         }
-        Navigator.push(
+        Get.to(const UpdateProfileScreen());
+        /*Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => const UpdateProfileScreen(),
           ),
-        );
+        );*/
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,10 +68,13 @@ AppBar profileAppBar(context, [bool fromUpdateProfile = false]) {
       IconButton(
           onPressed: () async {
             await AuthController.clearAllData();
-            Navigator.pushAndRemoveUntil(
+
+            Get.offAll(const SignInScreen());
+
+           /* Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(builder: (context) => const SignInScreen()),
-                (route) => false);
+                (route) => false);*/
           },
           icon: const Icon(Icons.logout))
     ],

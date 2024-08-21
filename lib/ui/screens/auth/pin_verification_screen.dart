@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:task_manager_oly/data/models/reset_password_model.dart';
 import 'package:task_manager_oly/ui/screens/auth/reset_password_screen.dart';
@@ -124,12 +125,16 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
   }
 
   void _onTapSignInButton() {
+
+    Get.offAll(const SignInScreen());
+
+/*
     Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
           builder: (context) => const SignInScreen(),
         ),
-        (route) => false);
+        (route) => false);*/
   }
 
   void _onTapVerifyOTPButton() async {
@@ -146,7 +151,21 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
       if (mounted) {
         setState(() {});
       }
-      Navigator.push(
+      Get.to( ResetPasswordScreen(
+        resetPasswordModel: ResetPasswordModel(
+            recoveryEmail: widget.recoveryEmail,
+            pinCode: _pinTEController.text),
+      ),);
+      /*
+ push => to()
+ pushReplacement => off()
+ pushAndRemoveUntil => ofAll()
+ pop => back()
+*/
+
+
+
+      /*Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => ResetPasswordScreen(
@@ -155,7 +174,7 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                 pinCode: _pinTEController.text),
           ),
         ),
-      );
+      );*/
       return;
     } else {
       if (mounted) {

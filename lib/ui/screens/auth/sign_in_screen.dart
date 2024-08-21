@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:task_manager_oly/data/models/login_model.dart';
 import 'package:task_manager_oly/data/models/network_response.dart';
 import 'package:task_manager_oly/data/network_caller/network_caller.dart';
@@ -138,12 +139,13 @@ class _SignInScreenState extends State<SignInScreen> {
 
 
   void _onTapSignUpButton() {
-    Navigator.push(
+    Get.to(() => const SignUpScreen());
+  /*  Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => const SignUpScreen(),
       ),
-    );
+    );*/
   }
 
   void _onTapNextButton() {
@@ -175,8 +177,10 @@ class _SignInScreenState extends State<SignInScreen> {
       await AuthController.saveUserData(loginModel.userModel!);
 
       if(mounted){
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const MainBottomNavScreen()));
+        Get.off(() => const MainBottomNavScreen());
+       // Get.off( const MainBottomNavScreen());
+       /* Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const MainBottomNavScreen()));*/
       }
 
     } else {
@@ -193,12 +197,14 @@ class _SignInScreenState extends State<SignInScreen> {
 
 
   void _onTapForgetPasswordButton() {
-    Navigator.push(
+
+    Get.to(() => const EmailVerificationScreen());
+   /* Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => const EmailVerificationScreen(),
       ),
-    );
+    );*/
   }
 
   @override

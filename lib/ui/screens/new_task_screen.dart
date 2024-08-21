@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:task_manager_oly/data/models/task_by_status_count_wrapper_model.dart';
 import 'package:task_manager_oly/data/models/task_count_by_status_model.dart';
 import 'package:task_manager_oly/ui/screens/add_new_task_screen.dart';
@@ -80,12 +81,14 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
   }
 
   void _onTapAddButton() {
-    Navigator.push(
+    Get.to(const AddNewTaskScreen());
+
+    /*Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => const AddNewTaskScreen(),
       ),
-    );
+    );*/
   }
 
   Widget buildSummarySelection() {

@@ -5,6 +5,7 @@ import 'package:task_manager_oly/ui/screens/auth/sign_in_screen.dart';
 import 'package:task_manager_oly/ui/screens/main_bottom_nav_screen.dart';
 import '../../utility/asset_paths.dart';
 import '../../widgets/background_widget.dart';
+import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -21,18 +22,22 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _moveToNextScreen() async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 10));
 
     bool isUserLoggedIn = await AuthController.checkAuthState();
 
     if (mounted) {
-      Navigator.pushReplacement(
+
+      Get.off(() =>isUserLoggedIn
+          ? const MainBottomNavScreen()
+          : const SignInScreen());
+      /*Navigator.pushReplacement(
         context,
         MaterialPageRoute(
             builder: (context) => isUserLoggedIn
                 ? const MainBottomNavScreen()
                 : const SignInScreen()),
-      );
+      );*/
     }
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:task_manager_oly/data/models/network_response.dart';
 import 'package:task_manager_oly/data/network_caller/network_caller.dart';
 import 'package:task_manager_oly/ui/utility/app_colors.dart';
@@ -211,6 +212,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       _clearTextFields();
       if (mounted) {
         showSnackBarMessage(context, 'Registration Success');
+       // Get.back();
+
       }
     } else {
       if (mounted) {
@@ -229,7 +232,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   void _onTapSignInButton() {
-    Navigator.pop(context);
+    Get.back();
+    //Navigator.pop(context);
   }
 
   @override

@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:task_manager_oly/ui/screens/auth/pin_verification_screen.dart';
 import 'package:task_manager_oly/ui/utility/app_colors.dart';
 import 'package:task_manager_oly/ui/widgets/center_progress_indicator.dart';
@@ -97,10 +98,11 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   }
 
   void _onTapSignInButton() {
-    Navigator.pop(context);
+    Get.back();
+    //Navigator.pop(context);
   }
 
-  void _onTapConfirmButton() async{
+  void _onTapConfirmButton() async {
 
     _emailVerificationInProgress = true;
     if (mounted) {
@@ -115,12 +117,16 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
       if (mounted) {
         setState(() {});
       }
-      Navigator.push(
+      Get.to(PinVerificationScreen(recoveryEmail: _emailTEController.text,),);
+      
+
+
+      /*Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) =>  PinVerificationScreen(recoveryEmail: _emailTEController.text,),
       ),
-    );
+    );*/
       return;
     } else {
       if (mounted) {
